@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+@{
+    var className = "table	table-bordered	table-hover";
+    List<Vidly.Models.Movie> movieList = Model.ToList();
+}
+
+@if (movieList.Count == 0)
+{
+    <p>We don't have any movies yet.</p>
+}
+else
+{
+
+    <table class="@className">
+        <tr>
+            <th>Movie</th>
+        </tr>
+        @foreach (var movie in movieList)
+        {
+            <tr>
+                @* For some bizarre reason, the ActionLink() method requires the last null argument when passing in parameters*@
+                <td>@movie.Name</td>
+            </tr>
+        }
+    </table>
+}
+
