@@ -227,7 +227,16 @@
     <Compile Include="Migrations\201809150918314_UpdateMembershipTypesIncludeNameInDatabase.Designer.cs">
       <DependentUpon>201809150918314_UpdateMembershipTypesIncludeNameInDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809151005326_AddedBirthdateToCustomerModel.cs" />
+    <Compile Include="Migrations\201809151005326_AddedBirthdateToCustomerModel.Designer.cs">
+      <DependentUpon>201809151005326_AddedBirthdateToCustomerModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809151036379_AddedGenreUpdatedMovieModel.cs" />
+    <Compile Include="Migrations\201809151036379_AddedGenreUpdatedMovieModel.Designer.cs">
+      <DependentUpon>201809151036379_AddedGenreUpdatedMovieModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -341,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809150918314_UpdateMembershipTypesIncludeNameInDatabase.resx">
       <DependentUpon>201809150918314_UpdateMembershipTypesIncludeNameInDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151005326_AddedBirthdateToCustomerModel.resx">
+      <DependentUpon>201809151005326_AddedBirthdateToCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151036379_AddedGenreUpdatedMovieModel.resx">
+      <DependentUpon>201809151036379_AddedGenreUpdatedMovieModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

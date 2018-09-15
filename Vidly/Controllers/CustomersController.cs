@@ -36,7 +36,7 @@ namespace Vidly.Controllers
         {
             //var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
             // the line below is also immediately executed, because of the SingleOrDefault extension method
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
