@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using Vidly.ViewModels;
 
@@ -10,15 +11,16 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        public List<Movie> movies { get; set; }
+        private ApplicationDbContext _context;
 
         public MoviesController()
         {
-            movies = new List<Movie>()
-            {
-                new Movie { Name = "shrek", Id = 1 },
-                new Movie { Name = "wall-e", Id = 2 }
-            };
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
 
         // GET: Movies/Random
@@ -72,8 +74,17 @@ namespace Vidly.Controllers
                 sortBy = "Name";
 
 
-            return View(movies);
+            //return View(movies);
             //return Content($"pageIndex={pageIndex}&sortBy={sortBy}");
+
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            return View(movies);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            return View(movie);
         }
 
         // in the route decorator, you specify your custom route and any constraints on the parameters
