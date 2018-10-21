@@ -27,7 +27,7 @@ else
         {
             <tr>
                 @* For some bizarre reason, the ActionLink() method requires the last null argument when passing in parameters*@
-                <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                 <td>@customer.MembershipType.Name</td>
             </tr>
         }

@@ -6,6 +6,10 @@
 
 <h2>Movies</h2>
 
+<p>
+    @Html.ActionLink("New Movie", "New", "Movies", null, new { @class = "btn btn-primary" })
+</p>
+
 @{
     var className = "table	table-bordered	table-hover";
     List<Vidly.Models.Movie> movieList = Model.ToList();
@@ -27,7 +31,7 @@ else
         {
             <tr>
                 @* For some bizarre reason, the ActionLink() method requires the last null argument when passing in parameters*@
-                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                <td>@Html.ActionLink(movie.Name, "Edit", "Movies", new { id = movie.Id }, null)</td>
                 <td>@movie.Genre.Name</td>
             </tr>
         }
