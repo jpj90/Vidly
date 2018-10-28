@@ -50,6 +50,7 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var ViewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipType = membershipTypes
             };
             return View("CustomerForm",ViewModel);
@@ -60,6 +61,19 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            //this will check if all validations on the Customer action parameter that was
+            // passed in check out. if not, then return the object to the user for revision.
+            // be sure to also create a ValidationMessage placeholder in your form!
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipType = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
                 // the method below will add the 'customer' ONLY in memory and will mark it as 'added'
                 _context.Customers.Add(customer);

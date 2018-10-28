@@ -9,6 +9,8 @@
 @* The using block will ensure that the form object is properly disposed AND that </form> tag is added *@
 @using (Html.BeginForm("Save", "Customers"))
 {
+    // the boolean indicates if individual property error messages are displayed
+    @Html.ValidationSummary(true, "please fix the following errors")
     @* this wrapper is bootstrap and will ensure a responsive form, surround each input field with it *@
     <div class="form-group">
         @* this will create a label *@
@@ -18,15 +20,21 @@
             is an anonymous object where you can insert element attributes. if you want to insert a
             'class' attribute, prefix it with an @ sign to circumvent the reserved keyword stuff *@
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Birthdate)
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @* this below will hold any validation error messages. don't forget to add styling for
+            the resulting classes in Site.css under /Content! *@
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.MembershipTypeId)
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipType, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.Birthdate)
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
+    </div>
+
     <div class="checkbox">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed to Newsletter?

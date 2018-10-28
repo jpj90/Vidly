@@ -10,7 +10,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }  
 
-        [Required]
+        [Required(ErrorMessage = "Please enter customer's name.")]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -21,7 +21,11 @@ namespace Vidly.Models
 
         public MembershipType MembershipType { get; set; }
 
+        // note that this is implictly required, because a regular byte
+        // cannot be null
         [Display(Name = "Membership Type")]
+        // remember to add a placeholder on the form to contain val. error messages
+        [Min18YearsIfAMember]
         public byte MembershipTypeId { get; set; }
 
 
