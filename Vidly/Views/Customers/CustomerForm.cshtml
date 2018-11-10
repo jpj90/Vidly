@@ -40,8 +40,19 @@
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed to Newsletter?
         </label>
     </div>
+    @* the customer id field is added here as a !hidden! field to ensure that this data is
+        available in the model when performing an update -> Udemy 4.44 *@
     @Html.HiddenFor(m => m.Customer.Id)
+    @* the antiforgtoken has to be matched with a decorator on the controller -> Udemy 5.57 *@
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
+
+@* allows for simple built-in validations to happen on the client -> Udemy 5.56 *@
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
 
 

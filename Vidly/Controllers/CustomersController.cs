@@ -59,6 +59,7 @@ namespace Vidly.Controllers
         // applying the HttpPost attribute, you ensure that only this type can reach the action
         // the passed in model will be mapped to the request data, this is 'Model Binding'
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             //this will check if all validations on the Customer action parameter that was
